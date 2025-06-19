@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.reportes.duoc.cl.reportes.dto.PedidoReporteDTO;
+import com.reportes.duoc.cl.reportes.dto.ProductoTopDTO;
 import com.reportes.duoc.cl.reportes.service.ReporteService;
 
 import io.swagger.v3.oas.annotations.Operation;
@@ -27,5 +28,11 @@ public class ReporteController {
     public ResponseEntity<List<PedidoReporteDTO>> getReportePedidos() {
         List<PedidoReporteDTO> reporte = reporteService.getPedidosDetallados();
         return ResponseEntity.ok(reporte);
+    }
+
+    @GetMapping("/productos-top")
+    @Operation(summary = "Top productos más vendidos con ingreso total")
+    public ResponseEntity<List<ProductoTopDTO>> getProductosTop() {
+        return ResponseEntity.ok(reporteService.getProductosMasVendidos());
     }
 }
